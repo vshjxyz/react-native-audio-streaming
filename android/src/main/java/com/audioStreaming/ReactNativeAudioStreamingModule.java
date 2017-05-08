@@ -46,7 +46,7 @@ implements ServiceConnection {
     }
     
     public void stopOncall() {
-        this.signal.stop();
+        this.signal.pause();
     }
     
     public Signal getSignal() {
@@ -97,17 +97,11 @@ implements ServiceConnection {
         }
     }
     
-    @ReactMethod public void stop() {
-        signal.stop();
-    }
+    @ReactMethod public void stop() { signal.stop();}
     
-    @ReactMethod public void pause() {
-        // Not implemented on aac
-        this.stop();
-    }
+    @ReactMethod public void pause() { signal.pause(); }
     
     @ReactMethod public void resume() {
-        // Not implemented on aac
         signal.resume();
     }
     
