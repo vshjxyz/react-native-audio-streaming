@@ -57,7 +57,7 @@ public class Signal extends Service implements ExoPlayer.EventListener, Metadata
     
     // Notification
     private Class<?> clsActivity;
-    private static final int NOTIFY_ME_ID = 696969;
+    public static final int NOTIFY_ME_ID = 696969;
     private NotificationCompat.Builder notifyBuilder;
     private NotificationManager notifyManager = null;
     public static RemoteViews remoteViews;

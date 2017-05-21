@@ -83,18 +83,18 @@ implements ServiceConnection {
     @Override public void onServiceDisconnected(ComponentName className) {
         signal = null;
     }
-    
-    @ReactMethod public void play(String streamingURL, ReadableMap options) {
-        this.shouldShowNotification = options.hasKey(SHOULD_SHOW_NOTIFICATION) && options.getBoolean(SHOULD_SHOW_NOTIFICATION);
-        playInternal(streamingURL);
-    }
-    
+
     private void playInternal(String streamingURL) {
         signal.play(streamingURL);
-        
+
         if (shouldShowNotification) {
             signal.showNotification();
         }
+    }
+
+    @ReactMethod public void play(String streamingURL, ReadableMap options) {
+        this.shouldShowNotification = options.hasKey(SHOULD_SHOW_NOTIFICATION) && options.getBoolean(SHOULD_SHOW_NOTIFICATION);
+        playInternal(streamingURL);
     }
     
     @ReactMethod public void stop() { signal.stop();}
