@@ -68,6 +68,8 @@ public class Signal extends Service implements ExoPlayer.EventListener, Metadata
     
     public static final String BROADCAST_PLAYBACK_STOP = "stop",
     BROADCAST_PLAYBACK_PLAY = "pause",
+    BROADCAST_PLAYBACK_FORWARD_30_SEC = "forward-30",
+    BROADCAST_PLAYBACK_BACKWARD_30_SEC = "backward-30",
     BROADCAST_EXIT = "exit";
     
     private final IBinder binder = new RadioBinder();
@@ -87,6 +89,8 @@ public class Signal extends Service implements ExoPlayer.EventListener, Metadata
     public void onCreate() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BROADCAST_PLAYBACK_STOP);
+        intentFilter.addAction(BROADCAST_PLAYBACK_BACKWARD_30_SEC);
+        intentFilter.addAction(BROADCAST_PLAYBACK_FORWARD_30_SEC);
         intentFilter.addAction(BROADCAST_PLAYBACK_PLAY);
         intentFilter.addAction(BROADCAST_EXIT);
         registerReceiver(this.receiver, intentFilter);
@@ -388,7 +392,6 @@ public class Signal extends Service implements ExoPlayer.EventListener, Metadata
         .setSmallIcon(smallIconResId)
         .setLargeIcon(largeIconBitmap)
         .setContentTitle(this.getAppTitle())
-        .setContentText("Playing an audio file")
         .setOngoing(true)
         ;
         
@@ -406,9 +409,10 @@ public class Signal extends Service implements ExoPlayer.EventListener, Metadata
         notifyBuilder.setContentIntent(resultPendingIntent);
         
         remoteViews.setTextViewText(R.id.title, this.getAppTitle());
-        remoteViews.setTextViewText(R.id.subtitle, "Playing an audio file");
         remoteViews.setImageViewResource(R.id.streaming_icon, largeIconResId);
         remoteViews.setOnClickPendingIntent(R.id.btn_streaming_notification_play, makePendingIntent(BROADCAST_PLAYBACK_PLAY));
+        remoteViews.setOnClickPendingIntent(R.id.btn_streaming_notification_forward, makePendingIntent(BROADCAST_PLAYBACK_FORWARD_30_SEC));
+        remoteViews.setOnClickPendingIntent(R.id.btn_streaming_notification_backward, makePendingIntent(BROADCAST_PLAYBACK_BACKWARD_30_SEC));
         remoteViews.setOnClickPendingIntent(R.id.btn_streaming_notification_stop, makePendingIntent(BROADCAST_EXIT));
         notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notifyManager.notify(NOTIFY_ME_ID, notifyBuilder.build());

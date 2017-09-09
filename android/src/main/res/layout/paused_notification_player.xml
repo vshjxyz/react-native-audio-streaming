@@ -34,31 +34,40 @@
                 android:text="YOYO"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:layout_marginTop="9dp"
-                android:textIsSelectable="false" />
-                <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/subtitle"
-                android:text="BLABLA"
-                android:textColor="#bbbbbb"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="16dp"
                 android:textIsSelectable="false" />
             </RelativeLayout>
+            <ImageButton
+            android:id="@+id/btn_streaming_notification_backward"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="-200dp"
+            android:layout_marginRight="0dp"
+            android:tint="#fff"
+            android:src="@drawable/ic_replay_30_black_24dp"
+            android:background="@null" />
             <ImageButton
             android:id="@+id/btn_streaming_notification_play"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="-100dp"
-            android:layout_marginRight="0dp"
+            android:layout_marginLeft="0dp"
             android:src="@android:drawable/ic_media_pause"
+            android:background="@null"/>
+            <ImageButton
+            android:id="@+id/btn_streaming_notification_forward"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="0dp"
+            android:tint="#fff"
+            android:src="@drawable/ic_forward_30_black_24dp"
             android:background="@null"/>
             <ImageButton
             android:id="@+id/btn_streaming_notification_stop"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_toRightOf="@+id/btn_streaming_notification_play"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="0dp"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
